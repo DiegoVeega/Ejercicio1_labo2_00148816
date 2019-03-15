@@ -4,30 +4,44 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import static com.example.ejercicioslabo2.R.id.user;
 
-    private LinearLayout mLinearLayout;
+public class MainActivity extends AppCompatActivity{
 
     private Button mboton;
+    private EditText muser;
+    private EditText mpass;
+    private TextView mtext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLinearLayout=findViewById(R.id.ll1);
-
+        muser=findViewById(R.id.user);
+        mpass=findViewById(R.id.pass);
         mboton=findViewById(R.id.boton);
+        mtext=findViewById(R.id.idtext);
 
-        mboton.setOnClickListener(this);
-    }
+        mboton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mtext.setText(muser.getText());
+            }
+        });
 
-    @Override
-    public void onClick(View v) {
-        int viewid=v.getId();
-
+        mboton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mtext.setText(mpass.getText());
+                mboton.setText("Long Click");
+                return true;
+            }
+        });
 
     }
 }
